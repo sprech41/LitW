@@ -1,0 +1,76 @@
+title: Start
+tags: 
+colorID: 0
+position: 505,275
+---
+<<setsprite mae annoyed>>
+What the hell are you doing in my room.
+[[...We're dating.|Dating]]
+[[What are YOU doing in MY room?!|MyRoom]]
+===
+title: MyRoom
+tags: 
+colorID: 0
+position: 218,297
+---
+<<setsprite mae suprised2>>
+    Wait... It's not?! Has my whole life been a lie?!?!
+    <<setsprite mae angry>>
+        Haaaaang on a second, I'm onto your tricks.
+        I'm not letting you bamboozle me again.
+        Last time I was convinced I was actually a hobo.
+        <<setsprite mae annoyed2>>
+        For like... a week.
+[[Sorry, didn't mean to make you question your sanity. Again.|Sorry]]
+[[To be fair, you didn't seem to hate it.|HoboLife]]
+===
+title: Dating
+tags: 
+colorID: 0
+position: 985,244
+---
+<<setsprite mae embarassed>>
+    Oh... right. Haha... sorry, you know me! Always forgetting... everything.
+    <<setsprite mae neutral>>
+        So! What do you want to do?
+[[Let's talk about our feelings!|Feelings]]
+[[Let's play video games!|Games]]
+[[Let's do lewd things!|Lewd]]
+===
+title: Lewd
+tags: 
+colorID: 0
+position: 794,532
+---
+Empty Text
+===
+title: Games
+tags: 
+colorID: 0
+position: 1163,516
+---
+<<setsprite mae happy>>
+    Sure! As long as you're okay with nothing but old stuff.
+    You know, due to the whole me being poor thing.
+    [[|End]]
+===
+title: Feelings
+tags: 
+colorID: 0
+position: 1331,290
+---
+<<setsprite mae annoyed>>
+    Gross. Feelings. Fine, what kind of feelings we talking here?
+[[Feelings like... I love you!|Love]]
+[[Rage, frustration, depression. You know, the usual|Feelings2]]
+===
+title: End
+tags: 
+colorID: 0
+position: 1571,566
+---
+<<setsprite mae neutral>>
+    That's the end of this proof of concept demo!
+    Note that it doesn't include some more advanced Yarn stuff.
+    Like narration or loading different dialogues.
+===

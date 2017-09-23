@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 60da9f39e89d4ba48b5fd14b98bdd202
+timeCreated: 1503020616
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Nitw P1
+  fontNames:
+  - Nitw P1
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

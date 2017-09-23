@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/_Scenes/Main menu.unity
+    guid: e9b0e2eaaf2e5ee4c87cd998e646fbca
+  - enabled: 0
+    path: Assets/scrapped stuff/bedroom day scene.unity
+    guid: d6735859bd4132747bf9d83166e7c18c
+  - enabled: 0
+    path: Assets/_Scenes/settings scene.unity
+    guid: e37740a0f2424254381e456567a7e56e
+  - enabled: 0
+    path: Assets/_Scenes/new game scene.unity
+    guid: 9af5e86f3bae8394d8626e28dc163160
+  - enabled: 0
+    path: Assets/_Scenes/new game slot 1.unity
+    guid: d733f76385fcc7a4380d4da149ada3b6
+  - enabled: 0
+    path: Assets/_Scenes/new game slot 2.unity
+    guid: 6569a5f2346758941901e875cf0d9ce0
+  - enabled: 0
+    path: Assets/_Scenes/new game slot 3.unity
+    guid: a9ddcff2ae96310429f2c00a469ac58f
+  - enabled: 1
+    path: Assets/YARNSPINNER SPECIFIC ASSETS/YarnSpinnerTestScene.unity
+    guid: 98fc386f98ab83649b2539d5882d5826

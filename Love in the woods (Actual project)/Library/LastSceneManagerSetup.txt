@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/YARNSPINNER SPECIFIC ASSETS/YarnSpinnerTestScene.unity
+  isLoaded: 1
+  isActive: 1

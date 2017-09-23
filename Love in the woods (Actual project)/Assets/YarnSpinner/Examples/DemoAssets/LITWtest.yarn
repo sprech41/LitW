@@ -1,0 +1,30 @@
+title: Start
+tags: 
+colorID: 0
+position: 505,275
+---
+<<setsprite mae annoyed>>
+What the hell are you doing in my room.
+[[...We're dating.|Dating]]
+[[What are YOU doing in MY room?!|MyRoom]]
+===
+title: MyRoom
+tags: 
+colorID: 0
+position: 218,297
+---
+Empty Text
+===
+title: Dating
+tags: 
+colorID: 0
+position: 799,301
+---
+<<setsprite mae embarassed>>
+    Oh... right. Haha... sorry, you know me! Always forgetting... everything.
+    <<setsprite mae neutral>>
+        So! What do you want to do?
+[[Let's talk about our feelings!|Feelings]]
+[[Let's play video games!|Games]]
+[[Let's do lewd things!|Lewd]]
+===

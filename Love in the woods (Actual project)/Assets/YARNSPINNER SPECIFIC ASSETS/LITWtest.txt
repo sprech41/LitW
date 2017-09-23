@@ -1,0 +1,112 @@
+[
+	{
+		"title": "Start",
+		"tags": "",
+		"body": "<<setsprite mae annoyed>>\n<<set $check to false>>\nWhat the hell are you doing in my room.\n[[...We're dating.|Dating]]\n[[What are YOU doing in MY room?!|MyRoom]]",
+		"position": {
+			"x": 505,
+			"y": 275
+		},
+		"colorID": 0
+	},
+	{
+		"title": "MyRoom",
+		"tags": "",
+		"body": "<<setsprite mae suprised2>>\n    Wait... It's not?! Has my whole life been a lie?!?!\n    <<setsprite mae angry>>\n        Haaaaang on a second, I'm onto your tricks.\n        I'm not letting you bamboozle me again.\n        Last time I was convinced I was actually a hobo.\n        <<setsprite mae annoyed2>>\n        For like... a week.\n[[Sorry, didn't mean to make you question your sanity. Again.|Sorry]]\n[[To be fair, you didn't seem to hate it.|HoboLife]]",
+		"position": {
+			"x": 186,
+			"y": 240
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Dating",
+		"tags": "",
+		"body": "<<if $check is false>>\n<<setsprite mae embarassed>>\n    Oh... right. Haha... sorry, you know me! Always forgetting... everything.\n<<endif>>\n    <<setsprite mae neutral>>\n        So! What do you want to do?\n[[Let's talk about our feelings!|Feelings]]\n[[Let's play video games!|Games]]\n[[Let's do lewd things!|Lewd]]",
+		"position": {
+			"x": 985,
+			"y": 244
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Lewd",
+		"tags": "",
+		"body": "<<setsprite mae confused>>\n    Yeah... no. I'm good. Maybe try again in the sequel.\n[[*You wiggle your eyebrows seductively, but to no avail.*|End]]",
+		"position": {
+			"x": 769,
+			"y": 420
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Games",
+		"tags": "",
+		"body": "<<setsprite mae happy>>\n    Sure! As long as you're okay with nothing but old stuff.\n    You know, due to the whole me being poor thing.\n    [[That's cool|End]]",
+		"position": {
+			"x": 1163,
+			"y": 516
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Feelings",
+		"tags": "",
+		"body": "<<setsprite mae annoyed>>\n    Gross. Feelings. Fine, what kind of feelings we talking here?\n[[Feelings like... I love you!|Love]]\n[[Rage, frustration, depression. You know, the usual|Feelings2]]\n",
+		"position": {
+			"x": 1295,
+			"y": 210
+		},
+		"colorID": 0
+	},
+	{
+		"title": "End",
+		"tags": "",
+		"body": "<<setsprite mae neutral>>\n    That's the end of this proof of concept demo!\n    Note that it doesn't include some more advanced Yarn stuff.\n    Like narration or loading different dialogues.\n    [[Restart?|Start]]",
+		"position": {
+			"x": 831,
+			"y": 858
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Love",
+		"tags": "",
+		"body": "<<setsprite mae blush2>>\n    Oh. OH! Yeah... yeah we could talk about that...\n[[I am the romance master|End]]",
+		"position": {
+			"x": 1606,
+			"y": 370
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Feelings2",
+		"tags": "",
+		"body": "<<setsprite mae thinking>>\n    Wow what a great idea!\n    Yeah let's talk about everything that makes us miserable!\n    So we can be miserable together!\n    <<setsprite mae annoyed>>\n    Eff that. I get enough of that on a daily basis.\n[[That was a terrible suggestion, why did I even say that.|End]]",
+		"position": {
+			"x": 1561,
+			"y": 622
+		},
+		"colorID": 0
+	},
+	{
+		"title": "Sorry",
+		"tags": "",
+		"body": "<<setsprite mae cocky>>\n    It's cool. This dialogue option doesn't really go anywhere anyway.\n    <<set $check to true>>\n[[Oh.|Dating]]",
+		"position": {
+			"x": -55,
+			"y": 500
+		},
+		"colorID": 0
+	},
+	{
+		"title": "HoboLife",
+		"tags": "",
+		"body": "<<setsprite mae thinking>>\n    True. After all...\n    ~~Nothin' beats the hobo life!~~\n    <<setsprite mae cocky>>\n    ~~STABBIN' PEOPLE WITH MY HOBO KNIIIIFE!~~\n[[Nice|Dating]]",
+		"position": {
+			"x": 272,
+			"y": 608
+		},
+		"colorID": 0
+	}
+]
