@@ -115,6 +115,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.loadsceneonclick
 0d8a8af39bc0f97c7b1c62bc0b9e6e3f Assembly-CSharp.dll:.ExampleVariableStorage
 9d0f21b81ae09bc4e4aa3af23665b161 Assembly-CSharp.dll:Yarn.Unity.Example.SpriteSwitcher
+9b9b1ca47b6f820c4f4a065a877a1533 Assembly-CSharp.dll:.move
+dd1ed4154c0ceefa997fb2c9c68b2237 Assembly-CSharp.dll:Yarn.Unity.Example.ChangeDialogue
 9c3c859b8e5de532969eddcec38f5754 Assembly-CSharp.dll:.DialogueScript
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -146,3 +148,4 @@ b03e5ed3210ce3528381769f28cbac81 Assembly-UnityScript.dll:.fpsClass
 e1bba2a3c7e2a7e1018b9331c07dcbd3 Assembly-CSharp.dll:Yarn.Unity.Example.NPC
 91e28fb9eac18bd1ed283673ab0bccef Assembly-CSharp.dll:DynamicLight2D.DynamicLight
 2fb89717f554c0beeb7f1050f23e8b1c Assembly-CSharp.dll:Yarn.Unity.Example.ExampleDialogueUI
+ce2872ded7cb3dd40cf653436582c6c1 Assembly-CSharp.dll:Yarn.Unity.Example.MoveCommand

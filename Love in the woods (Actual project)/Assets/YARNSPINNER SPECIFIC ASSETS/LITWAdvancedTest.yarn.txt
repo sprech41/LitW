@@ -1,0 +1,174 @@
+title: Start
+tags: 
+colorID: 0
+position: 452,271
+---
+<<move lori ExitLeft 30>>
+<<move bea ExitLeft 30>>
+<<move selmers ExitLeft 30>>
+<<move gregg ExitRight 30>>
+<<move mae ExitRight 30>>
+<<move germ ExitRight 50>>
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerLeft false>>
+<<spriteactive centerRight false>>
+I wonder who I should visit today?
+[[Visit Mae!|Mae]]
+[[Visit Bea!|Bea]]
+[[Visit Gregg!|Gregg]]
+[[Visit Selmers!|Selmers]]
+[[Visit Lori!|Lori]]
+[[Visit Germ!|Germ]]
+[[Call them all!|All]]
+===
+title: Mae
+tags: 
+colorID: 0
+position: 715,12
+---
+<<setsprite mae angry>>
+<<move mae EnterRight 30>>
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerRight true>>
+Why the heck did you pick me?
+<<setsprite mae annoyed>>
+There was already a build that tested all my sprites and stuff.
+<<setsprite mae annoyed2>>
+Ugh, I can't believe I woke up for this. I'm going back to sleep.
+<<move mae ExitRight 30>>
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerRight false>>
+She'll be back.
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerRight true>>
+NO I WON'T!!!!!
+[[Shit.|Start]]
+===
+title: Bea
+tags: 
+colorID: 0
+position: 825,263
+---
+<<move bea EnterLeft 30>>
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerLeft true>>
+What.
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerLeft false>>
+Do you... wanna hang out?
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerLeft true>>
+...No.
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerLeft false>>
+But I-
+<<move bea ExitLeft 30>>
+Oh, you're... o-okay... bye...
+[[*Retreat awkwardly*|Start]]
+===
+title: Gregg
+tags: 
+colorID: 0
+position: 683,572
+---
+<<move gregg EnterRight 30>>
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerRight true>>
+WUBBA LUBBA DUB DUUUUUUB!
+Remember that? Classic Gregg catchphrase!!!
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerRight false>>
+I don't think that-
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerRight true>>
+ANYWAYIGOTTA GOTOWORK SMELLYALATER
+<<move gregg ExitRight 30>>
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerRight false>>
+What the fuck.
+[[?????|Start]]
+===
+title: Germ
+tags: 
+colorID: 0
+position: 243,555
+---
+<<move germ EnterRight 30>>
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerRight true>>
+Oh it's you.
+Hey did you know that space is full of tons of things
+that could destroy the earth in seconds?
+One of the millions of asteroids could hit us
+Or the sun could spontaneously explode
+A supernova could happen near us
+A black hole light years away could expel a gamma ray beam
+That could just happen to be in our direction
+And fry our entire solar system instantly?
+<<setdialogue Dialogue player>>
+<<spriteactive playerBubble true>>
+<<spriteactive centerRight false>>
+.............
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerRight true>>
+...........
+Ok bye.
+<<move germ ExitLeft 50>>
+[[Cry|Start]]
+===
+title: Lori
+tags: 
+colorID: 0
+position: 54,318
+---
+<<move lori EnterLeft 30>>
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerLeft true>>
+Hey there.
+Wanna join my Bible Black club?
+[[FUCKING RUN|Start]]
+===
+title: Selmers
+tags: 
+colorID: 0
+position: 102,29
+---
+<<move selmers EnterLeft 30>>
+<<setdialogue Dialogue center>>
+<<spriteactive playerBubble false>>
+<<spriteactive centerLeft true>>
+POETRY JOKE
+<<move selmers ExitLeft 30>>
+<<spriteactive centerLeft false>>
+ALSO I DON'T KNOW HOW TO MAKE THIS DIALOGUE BLANK HELP
+[[How to write selmers???|Start]]
+===
+title: All
+tags: 
+colorID: 0
+position: 435,-45
+---
+<<move mae EnterRight 30>>
+<<move bea EnterLeft 30>>
+<<move germ FarRight 50>>
+<<move lori FarLeft 30>>
+<<move selmers CenterLeft 30>>
+<<move gregg CenterRight 50>>
+THIS WAS A MISTAKE
+[[I'm not writing this many lines|Start]]
+===

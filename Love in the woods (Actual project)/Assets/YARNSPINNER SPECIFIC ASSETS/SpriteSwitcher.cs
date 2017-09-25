@@ -59,6 +59,18 @@ namespace Yarn.Unity.Example {
 
             GetComponent<SpriteRenderer>().sprite = s;
         }
+
+		//sets a sprite to visible or invisible
+		[YarnCommand("spriteactive")]
+		public void SpriteActive(string arg)
+		{
+			if (arg == "true")
+				gameObject.GetComponent<SpriteRenderer>().enabled = true;
+			else if (arg == "false")
+				gameObject.GetComponent<SpriteRenderer>().enabled = false;
+			else
+				Debug.LogError ("spriteactive requires either true or false");
+		}
     }
 
 }
