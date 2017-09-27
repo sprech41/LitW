@@ -1,7 +1,7 @@
 title: Start
 tags: 
 colorID: 0
-position: 452,271
+position: 453,270
 ---
 <<move lori ExitLeft 30>>
 <<move bea ExitLeft 30>>
@@ -9,10 +9,7 @@ position: 452,271
 <<move gregg ExitRight 30>>
 <<move mae ExitRight 30>>
 <<move germ ExitRight 50>>
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerLeft false>>
-<<spriteactive centerRight false>>
+<<setdialogue Dialogue playerDialogue>>
 I wonder who I should visit today?
 [[Visit Mae!|Mae]]
 [[Visit Bea!|Bea]]
@@ -29,22 +26,16 @@ position: 715,12
 ---
 <<setsprite mae angry>>
 <<move mae EnterRight 30>>
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerRight true>>
+<<setdialogue Dialogue centerRightDialogue>>
 Why the heck did you pick me?
 <<setsprite mae annoyed>>
 There was already a build that tested all my sprites and stuff.
 <<setsprite mae annoyed2>>
 Ugh, I can't believe I woke up for this. I'm going back to sleep.
 <<move mae ExitRight 30>>
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerRight false>>
+<<setdialogue Dialogue playerDialogue>>
 She'll be back.
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerRight true>>
+<<setdialogue Dialogue centerRightDialogue>>
 NO I WON'T!!!!!
 [[Shit.|Start]]
 ===
@@ -54,21 +45,13 @@ colorID: 0
 position: 825,263
 ---
 <<move bea EnterLeft 30>>
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerLeft true>>
+<<setdialogue Dialogue centerLeftDialogue>>
 What.
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerLeft false>>
+<<setdialogue Dialogue playerDialogue>>
 Do you... wanna hang out?
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerLeft true>>
+<<setdialogue Dialogue centerLeftDialogue>>
 ...No.
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerLeft false>>
+<<setdialogue Dialogue playerDialogue>>
 But I-
 <<move bea ExitLeft 30>>
 Oh, you're... o-okay... bye...
@@ -77,26 +60,18 @@ Oh, you're... o-okay... bye...
 title: Gregg
 tags: 
 colorID: 0
-position: 683,572
+position: 680,574
 ---
 <<move gregg EnterRight 30>>
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerRight true>>
+<<setdialogue Dialogue centerRightDialogue>>
 WUBBA LUBBA DUB DUUUUUUB!
 Remember that? Classic Gregg catchphrase!!!
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerRight false>>
+<<setdialogue Dialogue playerDialogue>>
 I don't think that-
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerRight true>>
+<<setdialogue Dialogue centerRightDialogue>>
 ANYWAYIGOTTA GOTOWORK SMELLYALATER
 <<move gregg ExitRight 30>>
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerRight false>>
+<<setdialogue Dialogue playerDialogue>>
 What the fuck.
 [[?????|Start]]
 ===
@@ -106,9 +81,7 @@ colorID: 0
 position: 243,555
 ---
 <<move germ EnterRight 30>>
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerRight true>>
+<<setdialogue Dialogue centerRightDialogue>>
 Oh it's you.
 Hey did you know that space is full of tons of things
 that could destroy the earth in seconds?
@@ -118,13 +91,9 @@ A supernova could happen near us
 A black hole light years away could expel a gamma ray beam
 That could just happen to be in our direction
 And fry our entire solar system instantly?
-<<setdialogue Dialogue player>>
-<<spriteactive playerBubble true>>
-<<spriteactive centerRight false>>
+<<setdialogue Dialogue playerDialogue>>
 .............
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerRight true>>
+<<setdialogue Dialogue centerRightDialogue>>
 ...........
 Ok bye.
 <<move germ ExitLeft 50>>
@@ -136,9 +105,7 @@ colorID: 0
 position: 54,318
 ---
 <<move lori EnterLeft 30>>
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerLeft true>>
+<<setdialogue Dialogue centerLeftDialogue>>
 Hey there.
 Wanna join my Bible Black club?
 [[FUCKING RUN|Start]]
@@ -146,12 +113,10 @@ Wanna join my Bible Black club?
 title: Selmers
 tags: 
 colorID: 0
-position: 102,29
+position: 100,37
 ---
 <<move selmers EnterLeft 30>>
-<<setdialogue Dialogue center>>
-<<spriteactive playerBubble false>>
-<<spriteactive centerLeft true>>
+<<setdialogue Dialogue centerLeftDialogue>>
 POETRY JOKE
 <<move selmers ExitLeft 30>>
 <<spriteactive centerLeft false>>
