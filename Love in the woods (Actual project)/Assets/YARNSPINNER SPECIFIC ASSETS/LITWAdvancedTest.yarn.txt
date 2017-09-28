@@ -1,7 +1,7 @@
 title: Start
 tags: 
 colorID: 0
-position: 453,270
+position: 453,269
 ---
 <<move lori ExitLeft 30>>
 <<move bea ExitLeft 30>>
@@ -10,7 +10,7 @@ position: 453,270
 <<move mae ExitRight 30>>
 <<move germ ExitRight 50>>
 <<setdialogue Dialogue playerDialogue>>
-I wonder who I should visit today?
+I wonder who I, [$playerName],  should visit today?
 [[Visit Mae!|Mae]]
 [[Visit Bea!|Bea]]
 [[Visit Gregg!|Gregg]]
@@ -102,11 +102,11 @@ Ok bye.
 title: Lori
 tags: 
 colorID: 0
-position: 54,318
+position: 54,316
 ---
 <<move lori EnterLeft 30>>
 <<setdialogue Dialogue centerLeftDialogue>>
-Hey there.
+Hey there [$playerName].
 Wanna join my Bible Black club?
 [[FUCKING RUN|Start]]
 ===

@@ -27,6 +27,7 @@ SOFTWARE.
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 /// An extremely simple implementation of DialogueUnityVariableStorage, which
@@ -46,6 +47,11 @@ public class ExampleVariableStorage : VariableStorageBehaviour
         public string name;
         /// Value of the variable
         public string value;
+
+		//public string getVal()
+		//{
+		//	return value;
+		//}
         /// Type of the variable
         public Yarn.Value.Type type;
     }
@@ -60,7 +66,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour
     /// Reset to our default values when the game starts
     void Awake ()
     {
-        ResetToDefaults ();
+       ResetToDefaults ();
     }
 
     /// Erase all variables and reset to default values
@@ -136,6 +142,18 @@ public class ExampleVariableStorage : VariableStorageBehaviour
     {
         variables.Clear ();
     }
+
+	public void setPlayerName(Text x)
+	{
+		defaultVariables[0].value = x.text;
+		Debug.LogErrorFormat ("player name is {0}", getPlayerName());
+	}
+
+	[YarnCommand("getname")]
+	public string getPlayerName()
+	{
+		return defaultVariables[0].value;
+	}
 
     /// If we have a debug view, show the list of all variables in it
     void Update ()

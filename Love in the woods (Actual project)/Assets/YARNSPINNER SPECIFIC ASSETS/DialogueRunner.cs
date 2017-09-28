@@ -72,6 +72,7 @@ namespace Yarn.Unity
 
         public bool automaticCommands = true;
 
+
         /// Our conversation engine
         /** Automatically created on first access
          */
@@ -138,6 +139,12 @@ namespace Yarn.Unity
             }
 
         }
+
+		//Jacob's additions
+		public void loadNew(string x)
+		{
+			StartDialogue (x);
+		}
 
         /// Add a string of text to a script
         public void AddScript(string text) {
