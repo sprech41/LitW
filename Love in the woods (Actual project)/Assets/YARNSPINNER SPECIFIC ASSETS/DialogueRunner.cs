@@ -143,7 +143,7 @@ namespace Yarn.Unity
         }
 
         // tj's additions
-        void StartDialogueFromSaveData(string fileName) {
+        public void StartDialogueFromSaveData(string fileName) {
             ((ExampleVariableStorage)variableStorage).LoadData(fileName);
             string currNode = ((ExampleVariableStorage)variableStorage).saveData.currentNode;
             if (currNode != null) {
@@ -153,7 +153,7 @@ namespace Yarn.Unity
             }
         }
 
-        void SaveData(string fileName) {
+        public void SaveData(string fileName) {
             ((ExampleVariableStorage) variableStorage).SaveData(fileName, currentNodeName);
         }
 

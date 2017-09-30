@@ -202,7 +202,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
 
             var v = new Yarn.Value(value);
 
-            SetValue("$" + variable.name, v);
+            SetValue(variable.name, v);
         }
     }
 
@@ -226,15 +226,19 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
         variables.Clear();
     }
 
-    public void setPlayerName(Text x) {
-        defaultVariables[0].value = x.text;
-        Debug.LogErrorFormat("player name is {0}", getPlayerName());
-    }
+	public void setPlayerName(Text x) {
+		object val = x.text;
+		var v = new Yarn.Value(val);
+		//defaultVariables[0].value = x.text;
+		SetValue ("$playername", v);
+		Debug.LogErrorFormat("player name is {0}", getPlayerName());
+	}
 
-    [YarnCommand("getname")]
-    public string getPlayerName() {
-        return defaultVariables[0].value;
-    }
+	[YarnCommand("getname")]
+	public string getPlayerName() {
+		//return defaultVariables[0].value;
+		return GetValue("$playername").AsString;
+	}
 
     /// If we have a debug view, show the list of all variables in it
     void Update() {
