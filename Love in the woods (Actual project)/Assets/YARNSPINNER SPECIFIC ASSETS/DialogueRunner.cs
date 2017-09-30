@@ -122,7 +122,9 @@ namespace Yarn.Unity
             }
 
             if (startAutomatically) {
-                StartDialogue();
+                //StartDialogue();
+
+                StartDialogueFromSaveData("testsave.dat");
             }
 
             if (stringGroups != null) {
@@ -140,8 +142,23 @@ namespace Yarn.Unity
 
         }
 
-		//Jacob's additions
-		public void loadNew(string x)
+        // tj's additions
+        void StartDialogueFromSaveData(string fileName) {
+            ((ExampleVariableStorage)variableStorage).LoadData(fileName);
+            string currNode = ((ExampleVariableStorage)variableStorage).saveData.currentNode;
+            if (currNode != null) {
+                StartDialogue(currNode);
+            } else {
+                StartDialogue();
+            }
+        }
+
+        void SaveData(string fileName) {
+            ((ExampleVariableStorage) variableStorage).SaveData(fileName, currentNodeName);
+        }
+
+        //Jacob's additions
+        public void loadNew(string x)
 		{
 			StartDialogue (x);
 		}
