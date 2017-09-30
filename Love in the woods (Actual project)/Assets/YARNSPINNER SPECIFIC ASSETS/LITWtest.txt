@@ -92,7 +92,7 @@
 	{
 		"title": "Sorry",
 		"tags": "",
-		"body": "<<setsprite mae cocky>>\n    It's cool. This dialogue option doesn't really go anywhere anyway.\n    <<set $check to true>>\n[[Oh.|Dating]]",
+		"body": "<<setsprite mae cocky>>\n    It's cool. This dialogue option doesn't really go anywhere anyway. Ninja's effing around in my files to test stuff.\n    <<set $check to true>>\n[[Oh.|Dating]]",
 		"position": {
 			"x": -55,
 			"y": 500
