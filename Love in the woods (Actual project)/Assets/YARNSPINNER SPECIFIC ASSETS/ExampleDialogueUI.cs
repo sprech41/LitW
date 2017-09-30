@@ -259,6 +259,14 @@ namespace Yarn.Unity.Example {
             yield break;
         }
 
+		void Update()
+		{
+			if (Input.GetButton ("Fire1") || Input.GetButton("Submit"))
+				textSpeed = 0.007f;
+			else
+				textSpeed = 0.025f;
+		}
+
     }
 
 }
