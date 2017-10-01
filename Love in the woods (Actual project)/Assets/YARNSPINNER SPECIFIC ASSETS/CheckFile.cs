@@ -12,10 +12,8 @@ public class CheckFile : MonoBehaviour {
 	public void Check()
 	{
 		string n = gameObject.name;
-		if (File.Exists ("save1.dat")) {
+		if (File.Exists (Application.dataPath + "/saves/" + name)) {
 			t.text = "Save File " + num;
-		} else {
-			Debug.Log ("Failure");
 		}
 
 	}

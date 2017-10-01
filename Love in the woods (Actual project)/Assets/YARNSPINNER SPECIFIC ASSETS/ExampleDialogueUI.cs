@@ -29,6 +29,7 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Text;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 namespace Yarn.Unity.Example {
     /// Displays dialogue lines to the player, and sends
@@ -41,6 +42,9 @@ namespace Yarn.Unity.Example {
      */
     public class ExampleDialogueUI : Yarn.Unity.DialogueUIBehaviour
     {
+		//used so this script knows when to not accept input
+		public bool menuActive = false;
+		public GameObject menuButton;
 
         /// The object that contains the dialogue and the options.
         /** This object will be enabled when conversation starts, and 
@@ -159,8 +163,8 @@ namespace Yarn.Unity.Example {
             if (continuePrompt != null)
                 continuePrompt.SetActive (true);
 
-            // Wait for any user input
-            while (Input.anyKeyDown == false) {
+            // Wait for any user input. DON'T ACCEPT INPUT IF USER CLICKED MENU OR IS IN THE MENU
+			while (Input.anyKeyDown == false || EventSystem.current.currentSelectedGameObject == menuButton || menuActive) {
                 yield return null;
             }
 
@@ -265,6 +269,18 @@ namespace Yarn.Unity.Example {
 				textSpeed = 0.007f;
 			else
 				textSpeed = 0.025f;
+		}
+
+		//debug
+		public void DisableAll()
+		{
+			foreach (Button b in optionButtons)
+				b.enabled = false;
+		}
+
+		public void SetMenuActive(bool b)
+		{
+			menuActive = b;
 		}
 
     }

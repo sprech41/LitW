@@ -29,6 +29,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using CsvHelper;
+using UnityEngine.UI;
 
 namespace Yarn.Unity
 {
@@ -44,6 +45,7 @@ namespace Yarn.Unity
     [AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
     public class DialogueRunner : MonoBehaviour
     {
+
         /// The JSON files to load the conversation from
         public TextAsset[] sourceText;
 
@@ -94,7 +96,7 @@ namespace Yarn.Unity
                 return _dialogue;
             }
         }
-
+			
         /// Start the dialogue
         void Start ()
         {
@@ -144,6 +146,7 @@ namespace Yarn.Unity
 
         // tj's additions
         public void StartDialogueFromSaveData(string fileName) {
+			Time.timeScale = 1;		//unpause the game
             ((ExampleVariableStorage)variableStorage).LoadData(fileName);
             string currNode = ((ExampleVariableStorage)variableStorage).saveData.currentNode;
             if (currNode != null) {
