@@ -154,7 +154,9 @@ namespace Yarn.Unity
         }
 
         public void SaveData(string fileName) {
+			Debug.Log("Saving.......");
             ((ExampleVariableStorage) variableStorage).SaveData(fileName, currentNodeName);
+			Debug.Log ("Save complete.");
         }
 
         //Jacob's additions
