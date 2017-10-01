@@ -1658,7 +1658,7 @@ Prefab:
     - target: {fileID: 114095010647736282, guid: 107508f7f8734824d88ff62f2f9b5093,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: ??!?!?!?!??!f
+      value: testsave.dat
       objectReference: {fileID: 0}
     - target: {fileID: 114867556642955636, guid: 107508f7f8734824d88ff62f2f9b5093,
         type: 2}
@@ -6601,9 +6601,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 610c541718d694070a21327d1ae62e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterHolder: {fileID: 1687390419}
   saveData:
     variables: []
     currentNode: 
+    characterPositions: []
   defaultVariables:
   - name: playername
     value: bob
@@ -9522,7 +9524,7 @@ Prefab:
     - target: {fileID: 114095010647736282, guid: 107508f7f8734824d88ff62f2f9b5093,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: ??!?!?!?!??!
+      value: testsave.dat
       objectReference: {fileID: 0}
     - target: {fileID: 114867556642955636, guid: 107508f7f8734824d88ff62f2f9b5093,
         type: 2}

@@ -39,8 +39,34 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
     public class SerSaveData { // Class that stores variables
         public DefaultVariable[] variables;
         public String currentNode;
+        public SerCharacterPos[] characterPositions;
     }
 
+    [System.Serializable]
+    public class SerCharacterPos {
+        public string name;
+        public SerVector3 pos;
+    }
+
+    [System.Serializable]
+    public class SerVector3 {
+        public float x, y, z;
+    }
+
+    public SerVector3 Vector3ToSerVector3(Vector3 v) {
+        SerVector3 sv = new SerVector3();
+        sv.x = v.x;
+        sv.y = v.y;
+        sv.z = v.z;
+        return sv;
+    }
+
+    public Vector3 SerVector3ToVector3(SerVector3 sv) {
+        return new Vector3(sv.x, sv.y, sv.z);
+    }
+
+    public Transform characterHolder;
+    
     public SerSaveData saveData;
 
     public void SaveData(string fileName, string currentNodeName) { // Saves data to a folder called "saves" with the given filename
@@ -64,6 +90,19 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
         }
 
         saveData.currentNode = currentNodeName;
+
+        if (characterHolder != null) {
+            saveData.characterPositions = new SerCharacterPos[characterHolder.childCount];
+
+            i = 0;
+            foreach (Transform child in characterHolder) {
+                SerCharacterPos spos = new SerCharacterPos();
+                spos.name = child.gameObject.name;
+                spos.pos = Vector3ToSerVector3(child.position);
+                saveData.characterPositions[i] = spos;
+                i++;
+            }   
+        }
 
         bf.Serialize(file, saveData); // Serialize the data and save it
         file.Close(); // Close the file
@@ -119,6 +158,15 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
 
                 SetValue(variable.name, v);
             } // End of the code I copied because I'm lazy
+
+            if (saveData.characterPositions != null) {
+                for (int i = 0; i < saveData.characterPositions.Length; i++) {
+                    Transform character = characterHolder.Find(saveData.characterPositions[i].name);
+                    if (character) {
+                        character.position = SerVector3ToVector3(saveData.characterPositions[i].pos);
+                    }
+                }
+            }
 
             file.Close(); // Close the file and return a success
             return true;
