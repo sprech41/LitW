@@ -26,6 +26,7 @@ using Yarn.Unity;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
+using Yarn;
 
 /// An extremely simple implementation of DialogueUnityVariableStorage, which
 /// just stores everything in a Dictionary.
@@ -33,7 +34,6 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
 
     /// Where we actually keeping our variables
     Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
-
 
     [System.Serializable]
     public class SerSaveData { // Class that stores variables

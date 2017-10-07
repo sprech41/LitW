@@ -11,6 +11,9 @@ position: 453,269
 <<move germ ExitRight 50>>
 <<setdialogue Dialogue playerDialogue>>
 I wonder who I, [$playerName],  should visit today?
+<<if getKarma() == 5>>
+SUCCESS
+<<endif>>
 [[Visit Mae!|Mae]]
 [[Visit Bea!|Bea]]
 [[Visit Gregg!|Gregg]]

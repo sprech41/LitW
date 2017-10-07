@@ -46,6 +46,11 @@ namespace Yarn.Unity.Example {
 		public bool menuActive = false;
 		public GameObject menuButton;
 
+		public bool ffwdActive = false;
+
+		//log of dialogue
+		public Text log;
+
         /// The object that contains the dialogue and the options.
         /** This object will be enabled when conversation starts, and 
          * disabled when it ends.
@@ -159,15 +164,18 @@ namespace Yarn.Unity.Example {
 				lineText.text = CheckVars(line.text);
             }
 
+			log.text += CheckVars (line.text) + "\n";	//update the log
+
             // Show the 'press any key' prompt when done, if we have one
             if (continuePrompt != null)
                 continuePrompt.SetActive (true);
 
-            // Wait for any user input. DON'T ACCEPT INPUT IF USER CLICKED MENU OR IS IN THE MENU
-			while (Input.anyKeyDown == false || EventSystem.current.currentSelectedGameObject == menuButton || menuActive) {
-                yield return null;
-            }
-
+			if (!ffwdActive) {
+				// Wait for any user input. DON'T ACCEPT INPUT IF USER CLICKED MENU OR IS IN THE MENU
+				while (Input.anyKeyDown == false || EventSystem.current.currentSelectedGameObject == menuButton || menuActive) {
+					yield return null;
+				}
+			}
             // Hide the text and prompt
             //lineText.gameObject.SetActive (false);
 
@@ -281,6 +289,14 @@ namespace Yarn.Unity.Example {
 		public void SetMenuActive(bool b)
 		{
 			menuActive = b;
+		}
+
+		public void SetFFWD()
+		{
+			if (ffwdActive)
+				ffwdActive = false;
+			else
+				ffwdActive = true;
 		}
 
     }

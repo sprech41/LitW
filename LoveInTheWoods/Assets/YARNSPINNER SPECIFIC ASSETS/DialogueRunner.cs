@@ -30,6 +30,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using CsvHelper;
 using UnityEngine.UI;
+using Yarn;
 
 namespace Yarn.Unity
 {
@@ -45,7 +46,6 @@ namespace Yarn.Unity
     [AddComponentMenu("Scripts/Yarn Spinner/Dialogue Runner")]
     public class DialogueRunner : MonoBehaviour
     {
-
         /// The JSON files to load the conversation from
         public TextAsset[] sourceText;
 
@@ -97,9 +97,13 @@ namespace Yarn.Unity
             }
         }
 			
+		//dialogue.library.RegisterFunction("getKarma", 0, {return 5;});
+			
         /// Start the dialogue
         void Start ()
         {
+
+			dialogue.library.RegisterFunction ("getKarma", 0, delegate {return 5;});
             // Ensure that we have our Implementation object
             if (dialogueUI == null) {
                 Debug.LogError ("Implementation was not set! Can't run the dialogue!");
