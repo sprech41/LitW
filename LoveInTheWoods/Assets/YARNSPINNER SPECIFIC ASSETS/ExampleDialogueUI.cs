@@ -72,12 +72,16 @@ namespace Yarn.Unity.Example {
         [Tooltip("How quickly to show the text, in seconds per character")]
         public float textSpeed = 0.025f;
 
-        /// The buttons that let the user choose an option
-        public List<Button> optionButtons;
-
         /// Make it possible to temporarily disable the controls when
         /// dialogue is active and to restore them when dialogue ends
         public RectTransform gameControlsContainer;
+
+        /// The arrows for the dialogue
+        public Image LeftArrow;
+        public Image RightArrow;
+
+        ///  Dots that show which option you're on
+        public List<Component> Dots;
 
         void Awake ()
         {
@@ -87,13 +91,16 @@ namespace Yarn.Unity.Example {
 
             lineText.gameObject.SetActive (false);
 
-            foreach (var button in optionButtons) {
-                button.gameObject.SetActive (false);
-            }
-
             // Hide the continue prompt if it exists
             if (continuePrompt != null)
                 continuePrompt.SetActive (false);
+
+            LeftArrow.gameObject.SetActive(false);
+            RightArrow.gameObject.SetActive(false);
+
+            foreach (Component dot in Dots) {
+                dot.gameObject.SetActive(false);
+            }
         }
 
 		//The following is a workaround solution that allows
@@ -184,35 +191,109 @@ namespace Yarn.Unity.Example {
 
         }
 
-        /// Show a list of options, and wait for the player to make a selection.
-        public override IEnumerator RunOptions (Yarn.Options optionsCollection, 
-                                                Yarn.OptionChooser optionChooser)
+        // tj's stuff
+        public override IEnumerator RunOptions(Yarn.Options optionsCollection,
+                                            Yarn.OptionChooser optionChooser)
         {
-            // Do a little bit of safety checking
-            if (optionsCollection.options.Count > optionButtons.Count) {
-                Debug.LogWarning("There are more options to present than there are" +
-                                 "buttons to present them in. This will cause problems.");
-            }
+            yield return null; // this fixes a bug i don't know why just leave it here
 
-            // Display each option in a button, and make it visible
-            int i = 0;
-            foreach (var optionString in optionsCollection.options) {
-                optionButtons [i].gameObject.SetActive (true);
-                optionButtons [i].GetComponentInChildren<Text> ().text = optionString;
-                i++;
-            }
+            int currentOption = 0;
+            bool messageDisplayed = false;
 
             // Record that we're using it
             SetSelectedOption = optionChooser;
 
-            // Wait until the chooser has been used and then removed (see SetOption below)
-            while (SetSelectedOption != null) {
+            RightArrow.gameObject.SetActive(true);
+            Dots[0].transform.Find("LightDot").gameObject.SetActive(true);
+
+            for (int i = 0; i < optionsCollection.options.Count; i++) {
+                Dots[i].gameObject.SetActive(true);
+            }
+
+            while (SetSelectedOption != null)
+            {
+                if (!(EventSystem.current.currentSelectedGameObject == menuButton || menuActive))
+                { // Don't run if menu is active
+                    if (Input.GetKeyDown("right"))
+                    {
+                        if (currentOption < optionsCollection.options.Count - 1)
+                        {
+                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
+
+                            currentOption++;
+                            messageDisplayed = false;
+
+                            RightArrow.gameObject.SetActive(currentOption < optionsCollection.options.Count - 1);
+                            LeftArrow.gameObject.SetActive(currentOption > 0);
+
+                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
+                        }
+                    }
+                    else if (Input.GetKeyDown("left"))
+                    {
+                        if (currentOption > 0) {
+                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
+                            
+                            currentOption--;
+                            messageDisplayed = false;
+
+                            RightArrow.gameObject.SetActive(currentOption < optionsCollection.options.Count - 1);
+                            LeftArrow.gameObject.SetActive(currentOption > 0);
+
+                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
+                        }
+                    }
+                    else if (Input.anyKeyDown)
+                    { // Key was pressed that wasnt left or right
+                        SetOption(currentOption);
+                        break;
+                    }
+
+                    if (!messageDisplayed)
+                    {
+
+                        // Show the text
+                        lineText.gameObject.SetActive(true);
+
+                        if (textSpeed > 0.0f)
+                        {
+                            // Display the line one character at a time
+                            var stringBuilder = new StringBuilder();
+
+                            foreach (char c in CheckVars(optionsCollection.options[currentOption]))
+                            {
+                                stringBuilder.Append(c);
+                                lineText.text = stringBuilder.ToString();
+                                yield return new WaitForSeconds(textSpeed);
+                            }
+                        }
+                        else
+                        {
+                            // Display the line immediately if textSpeed == 0
+                            lineText.text = CheckVars(optionsCollection.options[currentOption]);
+                        }
+
+                        messageDisplayed = true;
+                    }
+                }
+
                 yield return null;
             }
 
-            // Hide all the buttons
-            foreach (var button in optionButtons) {
-                button.gameObject.SetActive (false);
+
+            // Wait until the chooser has been used and then removed (see SetOption below)
+            while (SetSelectedOption != null)
+            {
+                yield return null;
+            }
+
+            LeftArrow.gameObject.SetActive(false);
+            RightArrow.gameObject.SetActive(false);
+
+            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
+            for (int i = 0; i < optionsCollection.options.Count; i++)
+            {
+                Dots[i].gameObject.SetActive(false);
             }
         }
 
@@ -277,13 +358,6 @@ namespace Yarn.Unity.Example {
 				textSpeed = 0.007f;
 			else
 				textSpeed = 0.025f;
-		}
-
-		//debug
-		public void DisableAll()
-		{
-			foreach (Button b in optionButtons)
-				b.enabled = false;
 		}
 
 		public void SetMenuActive(bool b)

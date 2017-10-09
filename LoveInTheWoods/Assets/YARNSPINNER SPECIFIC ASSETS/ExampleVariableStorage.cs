@@ -279,7 +279,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
 		var v = new Yarn.Value(val);
 		//defaultVariables[0].value = x.text;
 		SetValue ("$playername", v);
-		Debug.LogErrorFormat("player name is {0}", getPlayerName());
+		//Debug.LogErrorFormat("player name is {0}", getPlayerName()); 
 	}
 
 	[YarnCommand("getname")]
