@@ -80,8 +80,11 @@ namespace Yarn.Unity.Example {
         public Image LeftArrow;
         public Image RightArrow;
 
-        ///  Dots that show which option you're on
+        /// Dots that show which option you're on
         public List<Component> Dots;
+
+        // The text that shows the options
+        public Text OptionsText;
 
         void Awake ()
         {
@@ -101,6 +104,8 @@ namespace Yarn.Unity.Example {
             foreach (Component dot in Dots) {
                 dot.gameObject.SetActive(false);
             }
+
+            OptionsText.gameObject.SetActive(false);
         }
 
 		//The following is a workaround solution that allows
@@ -192,13 +197,49 @@ namespace Yarn.Unity.Example {
         }
 
         // tj's stuff
+
+        int currentOption;
+        bool messageDisplayed;
+        int totalOptions;
+
+        public void incrementOption() {
+            if (currentOption < totalOptions - 1 && messageDisplayed)
+            {
+                Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
+
+                currentOption++;
+                messageDisplayed = false;
+
+                RightArrow.gameObject.SetActive(currentOption < totalOptions - 1);
+                LeftArrow.gameObject.SetActive(currentOption > 0);
+
+                Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
+            }
+        }
+
+        public void decrementOption() {
+            if (currentOption > 0 && messageDisplayed)
+            {
+                Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
+
+                currentOption--;
+                messageDisplayed = false;
+
+                RightArrow.gameObject.SetActive(currentOption < totalOptions - 1);
+                LeftArrow.gameObject.SetActive(currentOption > 0);
+
+                Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
+            }
+        }
+
         public override IEnumerator RunOptions(Yarn.Options optionsCollection,
                                             Yarn.OptionChooser optionChooser)
         {
             yield return null; // this fixes a bug i don't know why just leave it here
 
-            int currentOption = 0;
-            bool messageDisplayed = false;
+            currentOption = 0;
+            messageDisplayed = false;
+            totalOptions = optionsCollection.options.Count;
 
             // Record that we're using it
             SetSelectedOption = optionChooser;
@@ -216,35 +257,14 @@ namespace Yarn.Unity.Example {
                 { // Don't run if menu is active
                     if (Input.GetKeyDown("right"))
                     {
-                        if (currentOption < optionsCollection.options.Count - 1)
-                        {
-                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
-
-                            currentOption++;
-                            messageDisplayed = false;
-
-                            RightArrow.gameObject.SetActive(currentOption < optionsCollection.options.Count - 1);
-                            LeftArrow.gameObject.SetActive(currentOption > 0);
-
-                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
-                        }
+                        incrementOption();
                     }
                     else if (Input.GetKeyDown("left"))
                     {
-                        if (currentOption > 0) {
-                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
-                            
-                            currentOption--;
-                            messageDisplayed = false;
-
-                            RightArrow.gameObject.SetActive(currentOption < optionsCollection.options.Count - 1);
-                            LeftArrow.gameObject.SetActive(currentOption > 0);
-
-                            Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
-                        }
+                        decrementOption();
                     }
-                    else if (Input.anyKeyDown)
-                    { // Key was pressed that wasnt left or right
+                    else if (Input.anyKeyDown && !Input.GetMouseButtonDown(0))
+                    { // Key was pressed that wasnt left or right or left mouse button
                         SetOption(currentOption);
                         break;
                     }
@@ -253,7 +273,7 @@ namespace Yarn.Unity.Example {
                     {
 
                         // Show the text
-                        lineText.gameObject.SetActive(true);
+                        OptionsText.gameObject.SetActive(true);
 
                         if (textSpeed > 0.0f)
                         {
@@ -263,14 +283,14 @@ namespace Yarn.Unity.Example {
                             foreach (char c in CheckVars(optionsCollection.options[currentOption]))
                             {
                                 stringBuilder.Append(c);
-                                lineText.text = stringBuilder.ToString();
+                                OptionsText.text = stringBuilder.ToString();
                                 yield return new WaitForSeconds(textSpeed);
                             }
                         }
                         else
                         {
                             // Display the line immediately if textSpeed == 0
-                            lineText.text = CheckVars(optionsCollection.options[currentOption]);
+                            OptionsText.text = CheckVars(optionsCollection.options[currentOption]);
                         }
 
                         messageDisplayed = true;
@@ -295,6 +315,8 @@ namespace Yarn.Unity.Example {
             {
                 Dots[i].gameObject.SetActive(false);
             }
+
+            OptionsText.gameObject.SetActive(false);
         }
 
         /// Called by buttons to make a selection.
