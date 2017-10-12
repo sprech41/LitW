@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 namespace Yarn.Unity.Example
 {
 
@@ -23,6 +24,11 @@ namespace Yarn.Unity.Example
         public int dayCount = 0; //# of days passed
         public enum dayTime { Morning, Noon, Evening, Night }; //Time of day
         public dayTime currentTime = dayTime.Morning; //the current time, duh.
+
+		void Update()
+		{
+			GetComponent<Text> ().text = "Day " + dayCount + "\n" + currentTime;
+		}
 
         [YarnCommand("advancetime")]
         public void AdvanceTime() //incements time forward
