@@ -27,7 +27,7 @@ namespace Yarn.Unity.Example
 
 		void Update()
 		{
-			GetComponent<Text> ().text = "Day " + dayCount + "\n" + currentTime;
+			//GetComponent<Text> ().text = "Day " + dayCount + "\n" + currentTime;
 		}
 
         [YarnCommand("advancetime")]

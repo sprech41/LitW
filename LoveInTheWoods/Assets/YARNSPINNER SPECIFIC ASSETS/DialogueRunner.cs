@@ -222,7 +222,7 @@ namespace Yarn.Unity
             StartDialogue ();
         }
 
-        /// Start the dialogue
+        /// Start the dialogued
         public void StartDialogue () {
             StartDialogue(startNode);
         }
