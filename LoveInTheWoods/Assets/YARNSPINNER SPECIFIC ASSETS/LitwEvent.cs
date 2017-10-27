@@ -34,11 +34,16 @@ public class LitwEvent : MonoBehaviour {
 	{
 	}
 
+	void Update()
+	{
+		//Debug.LogFormat ("finished = {0}", finished);
+	}
 	public void startMe()
 	{
 		d.StartDialogue (startNode);
 		active = true;
-		SceneManager.LoadScene (sceneName, LoadSceneMode.Single);
+		if (sceneName != null)
+			SceneManager.LoadScene (sceneName, LoadSceneMode.Single);
 	}
 		
 }

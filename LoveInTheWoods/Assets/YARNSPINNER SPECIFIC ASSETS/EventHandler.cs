@@ -15,20 +15,24 @@ public class EventHandler : MonoBehaviour {
 	public TimeKeeper time;
 
 	//array of all events that are currently available. this will probably be used to know which options to display when choosing between events.
-	private List<LitwEvent> openEvents = new List<LitwEvent>();
+	public List<LitwEvent> openEvents = new List<LitwEvent>();
 
 	// Use this for initialization
 	void Start () {
 		//gonna have to have a starting event here at some point
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+		//if (currentEvent != null)
+			//Debug.LogFormat ("finished = {0}", currentEvent.finished);
 		//This will likely check whether it recieved a "finished" signal from yarn;
 	}
 
 	public void startEvent(string n)
 	{
+		if (currentEvent != null)
+			currentEvent.active = false;
 		bool found = false;
 		foreach (LitwEvent e in events) {
 			if (e.name == n) {
@@ -56,6 +60,9 @@ public class EventHandler : MonoBehaviour {
 	//check if an event is available based on event requirements alone
 	public bool checkReq(LitwEvent e)
 	{
+		if (e.reqEvents.Length == 0)
+			return true;
+		
 		//all required events must be finished for this event to be available
 		foreach (string n in e.reqEvents) {
 			foreach (LitwEvent x in events) {
@@ -76,8 +83,10 @@ public class EventHandler : MonoBehaviour {
 	{
 		foreach (LitwEvent e in events) {
 			//must pass both tests to be available.
-			if (checkTime (e) == true && checkReq (e) == true)
-				openEvents.Add (e);
+			if (checkTime (e) == true && checkReq (e) == true) {
+				if (openEvents.Contains(e) == false)
+					openEvents.Add (e);
+			}
 		}
 	}
 

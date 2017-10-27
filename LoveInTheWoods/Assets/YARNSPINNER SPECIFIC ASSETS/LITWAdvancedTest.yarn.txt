@@ -40,6 +40,7 @@ Ugh, I can't believe I woke up for this. I'm going back to sleep.
 She'll be back.
 <<setdialogue Dialogue centerRightDialogue>>
 NO I WON'T!!!!!
+<<finished EventHandler>>
 [[Shit.|Start]]
 ===
 title: Bea
@@ -58,6 +59,7 @@ Do you... wanna hang out?
 But I-
 <<move bea ExitLeft 30>>
 Oh, you're... o-okay... bye...
+<<finished EventHandler>>
 [[*Retreat awkwardly*|Start]]
 ===
 title: Gregg
@@ -76,6 +78,7 @@ ANYWAYIGOTTA GOTOWORK SMELLYALATER
 <<move gregg ExitRight 30>>
 <<setdialogue Dialogue playerDialogue>>
 What the fuck.
+<<finished EventHandler>>
 [[?????|Start]]
 ===
 title: Germ
@@ -100,6 +103,7 @@ And fry our entire solar system instantly?
 ...........
 Ok bye.
 <<move germ ExitLeft 50>>
+<<finished EventHandler>>
 [[Cry|Start]]
 ===
 title: Lori
@@ -111,12 +115,13 @@ position: 54,316
 <<setdialogue Dialogue centerLeftDialogue>>
 Hey there [$playerName].
 Wanna join my Bible Black club?
+<<finished EventHandler>>
 [[FUCKING RUN|Start]]
 ===
 title: Selmers
 tags: 
 colorID: 0
-position: 100,37
+position: 98,37
 ---
 <<move selmers EnterLeft 30>>
 <<setdialogue Dialogue centerLeftDialogue>>
@@ -124,6 +129,7 @@ POETRY JOKE
 <<move selmers ExitLeft 30>>
 <<spriteactive centerLeft false>>
 ALSO I DON'T KNOW HOW TO MAKE THIS DIALOGUE BLANK HELP
+<<finished EventHandler>>
 [[How to write selmers???|Start]]
 ===
 title: All
@@ -138,5 +144,6 @@ position: 435,-45
 <<move selmers CenterLeft 30>>
 <<move gregg CenterRight 50>>
 THIS WAS A MISTAKE
+<<finished EventHandler>>
 [[I'm not writing this many lines|Start]]
 ===
