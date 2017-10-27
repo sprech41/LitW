@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class LitwEvent : MonoBehaviour {
 
 	//the name of this event
-	public string name;
+	public new string name;
 
 	//where in the dialogue to begin the scene
 	public string startNode;
