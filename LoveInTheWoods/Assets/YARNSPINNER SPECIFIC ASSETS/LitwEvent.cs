@@ -4,6 +4,7 @@ using UnityEngine;
 using Yarn.Unity;
 using Yarn.Unity.Example;
 using UnityEngine.SceneManagement;
+using SaveDataClasses;
 
 public class LitwEvent : MonoBehaviour {
 
@@ -45,5 +46,12 @@ public class LitwEvent : MonoBehaviour {
 		if (sceneName != null)
 			SceneManager.LoadScene (sceneName, LoadSceneMode.Single);
 	}
-		
+
+    // more tj stuff yea
+    public void startFromSaveData(SerSaveData saveData) {
+        d.StartDialogueFromSaveData(saveData);
+        active = true;
+        if (saveData.currentScene != null)
+            SceneManager.LoadScene(saveData.currentScene, LoadSceneMode.Single);
+    }
 }

@@ -31,6 +31,7 @@ using System.Text.RegularExpressions;
 using CsvHelper;
 using UnityEngine.UI;
 using Yarn;
+using SaveDataClasses;
 
 namespace Yarn.Unity
 {
@@ -128,9 +129,7 @@ namespace Yarn.Unity
             }
 
             if (startAutomatically) {
-                //StartDialogue();
-
-                StartDialogueFromSaveData("testsave.dat");
+                StartDialogue();
             }
 
             if (stringGroups != null) {
@@ -149,10 +148,10 @@ namespace Yarn.Unity
         }
 
         // tj's additions
-        public void StartDialogueFromSaveData(string fileName) {
-			Time.timeScale = 1;		//unpause the game
-            ((ExampleVariableStorage)variableStorage).LoadData(fileName);
-            string currNode = ((ExampleVariableStorage)variableStorage).saveData.currentNode;
+        public void StartDialogueFromSaveData(SerSaveData saveData) {
+            Time.timeScale = 1;		//unpause the game
+            ((ExampleVariableStorage)variableStorage).LoadData(saveData);
+            string currNode = saveData.currentNode;
             if (currNode != null) {
                 StartDialogue(currNode);
             } else {
@@ -160,9 +159,9 @@ namespace Yarn.Unity
             }
         }
 
-        public void SaveData(string fileName) {
-			Debug.Log("Saving.......");
-            ((ExampleVariableStorage) variableStorage).SaveData(fileName, currentNodeName);
+        public void SaveData(string fileName, string currentScene, int currentEvent) {
+			Debug.Log("Saving...");
+            ((ExampleVariableStorage) variableStorage).SaveData(fileName, currentNodeName, currentScene, currentEvent);
 			Debug.Log ("Save complete.");
         }
 

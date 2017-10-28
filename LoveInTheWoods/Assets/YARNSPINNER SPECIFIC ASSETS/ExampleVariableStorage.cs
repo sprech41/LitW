@@ -27,6 +27,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 using Yarn;
+using SaveDataClasses;
 
 /// An extremely simple implementation of DialogueUnityVariableStorage, which
 /// just stores everything in a Dictionary.
@@ -34,24 +35,6 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
 
     /// Where we actually keeping our variables
     Dictionary<string, Yarn.Value> variables = new Dictionary<string, Yarn.Value>();
-
-    [System.Serializable]
-    public class SerSaveData { // Class that stores variables
-        public DefaultVariable[] variables;
-        public String currentNode;
-        public SerCharacterPos[] characterPositions;
-    }
-
-    [System.Serializable]
-    public class SerCharacterPos {
-        public string name;
-        public SerVector3 pos;
-    }
-
-    [System.Serializable]
-    public class SerVector3 {
-        public float x, y, z;
-    }
 
     public SerVector3 Vector3ToSerVector3(Vector3 v) {
         SerVector3 sv = new SerVector3();
@@ -69,7 +52,7 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
     
     public SerSaveData saveData;
 
-    public void SaveData(string fileName, string currentNodeName) { // Saves data to a folder called "saves" with the given filename
+    public void SaveData(string fileName, string currentNodeName, string currentScene, int currentEvent) { // Saves data to a folder called "saves" with the given filename
         if (!Directory.Exists(Application.dataPath + "/saves")) // Create saves directory
             Directory.CreateDirectory(Application.dataPath + "/saves");
 
@@ -88,7 +71,8 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
             saveData.variables[i].value = entry.Value.AsString;
             i++;
         }
-
+        saveData.currentScene = currentScene;
+        saveData.currentEvent = currentEvent;
         saveData.currentNode = currentNodeName;
 
         if (characterHolder != null) {
@@ -108,89 +92,58 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
         file.Close(); // Close the file
     }
 
+    internal void LoadData(SerSaveData saveData) {
+        Clear(); // Clear previous variables
 
-    public bool LoadData(string fileName) // Loads saveData from the specified location; returns true if successful and false if not
-    {
-        string filePath = String.Format("{0}/saves/{1}", Application.dataPath, fileName);
-        if (File.Exists(filePath)) // Check to make sure the file exists first
-        {
-            BinaryFormatter bf = new BinaryFormatter(); // Make a serializer and open the file
-            FileStream file = File.Open(filePath, FileMode.Open);
+        foreach (var variable in saveData.variables) { // Copied code because I'm lazy
+            object value;
 
-            saveData = (SerSaveData)bf.Deserialize(file); // Deserialize the stored data
+            switch (variable.type) {
+                case Yarn.Value.Type.Number:
+                    float f = 0.0f;
+                    float.TryParse(variable.value, out f);
+                    value = f;
+                    break;
 
-            Clear(); // Clear previous variables
+                case Yarn.Value.Type.String:
+                    value = variable.value;
+                    break;
 
-            foreach (var variable in saveData.variables) { // Copied code because I'm lazy
-                object value;
+                case Yarn.Value.Type.Bool:
+                    bool b = false;
+                    bool.TryParse(variable.value, out b);
+                    value = b;
+                    break;
 
-                switch (variable.type) {
-                    case Yarn.Value.Type.Number:
-                        float f = 0.0f;
-                        float.TryParse(variable.value, out f);
-                        value = f;
-                        break;
+                case Yarn.Value.Type.Variable:
 
-                    case Yarn.Value.Type.String:
-                        value = variable.value;
-                        break;
+                    continue;
 
-                    case Yarn.Value.Type.Bool:
-                        bool b = false;
-                        bool.TryParse(variable.value, out b);
-                        value = b;
-                        break;
+                case Yarn.Value.Type.Null:
+                    value = null;
+                    break;
 
-                    case Yarn.Value.Type.Variable:
+                default:
+                    throw new System.ArgumentOutOfRangeException();
 
-                        continue;
-
-                    case Yarn.Value.Type.Null:
-                        value = null;
-                        break;
-
-                    default:
-                        throw new System.ArgumentOutOfRangeException();
-
-                }
-
-                var v = new Yarn.Value(value);
-
-                SetValue(variable.name, v);
-            } // End of the code I copied because I'm lazy
-
-            if (saveData.characterPositions != null) {
-                for (int i = 0; i < saveData.characterPositions.Length; i++) {
-                    Transform character = characterHolder.Find(saveData.characterPositions[i].name);
-                    if (character) {
-                        character.position = SerVector3ToVector3(saveData.characterPositions[i].pos);
-                    }
-                }
             }
 
-            file.Close(); // Close the file and return a success
-            return true;
-        } else {
-            return false;
+            var v = new Yarn.Value(value);
+
+            SetValue(variable.name, v);
+        } // End of the code I copied because I'm lazy
+
+        if (saveData.characterPositions != null) {
+            for (int i = 0; i < saveData.characterPositions.Length; i++) {
+                Transform character = characterHolder.Find(saveData.characterPositions[i].name);
+                if (character) {
+                    character.position = SerVector3ToVector3(saveData.characterPositions[i].pos);
+                }
+            }
         }
     }
 
-    /// A default value to apply when the object wakes up, or
-    /// when ResetToDefaults is called
-    [System.Serializable]
-    public class DefaultVariable {
-        /// Name of the variable
-        public string name;
-        /// Value of the variable
-        public string value;
-
-        //public string getVal()
-        //{
-        //	return value;
-        //}
-        /// Type of the variable
-        public Yarn.Value.Type type;
-    }
+    // DefaultVarialbe had to get moved out of here for reasons
 
     /// Our list of default variables, for debugging.
     public DefaultVariable[] defaultVariables;
@@ -301,4 +254,43 @@ public class ExampleVariableStorage : VariableStorageBehaviour {
         }
     }
 
+}
+
+namespace SaveDataClasses {
+    [System.Serializable]
+    public class SerSaveData { // Class that stores variables
+        public DefaultVariable[] variables;
+        public String currentNode;
+        public SerCharacterPos[] characterPositions;
+        public String currentScene;
+        public int currentEvent;
+    }
+
+    [System.Serializable]
+    public class SerCharacterPos {
+        public string name;
+        public SerVector3 pos;
+    }
+
+    [System.Serializable]
+    public class SerVector3 {
+        public float x, y, z;
+    }
+
+    /// A default value to apply when the object wakes up, or
+    /// when ResetToDefaults is called
+    [System.Serializable]
+    public class DefaultVariable {
+        /// Name of the variable
+        public string name;
+        /// Value of the variable
+        public string value;
+
+        //public string getVal()
+        //{
+        //	return value;
+        //}
+        /// Type of the variable
+        public Yarn.Value.Type type;
+    }
 }
