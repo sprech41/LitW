@@ -12,7 +12,6 @@ position: 453,269
 <<setdialogue Dialogue playerDialogue>>
 I wonder who I, [$playerName],  should visit today?
 <<if getKarma() == 5>>
-<<playsound Audio placeholder>>
 SUCCESS
 <<endif>>
 [[Visit Mae!|Mae]]
