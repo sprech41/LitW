@@ -203,30 +203,34 @@ namespace Yarn.Unity.Example {
         int totalOptions;
 
         public void incrementOption() {
-            if (currentOption < totalOptions - 1 && messageDisplayed)
+            if (messageDisplayed)
             {
                 Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
 
-                currentOption++;
+                currentOption = (currentOption + 1) % totalOptions;
+
                 messageDisplayed = false;
 
-                RightArrow.gameObject.SetActive(currentOption < totalOptions - 1);
-                LeftArrow.gameObject.SetActive(currentOption > 0);
+                //RightArrow.gameObject.SetActive(currentOption < totalOptions - 1);
+                //LeftArrow.gameObject.SetActive(currentOption > 0);
 
                 Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
             }
         }
 
         public void decrementOption() {
-            if (currentOption > 0 && messageDisplayed)
+            if (messageDisplayed)
             {
                 Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(false);
-
+                
                 currentOption--;
+                if (currentOption < 0)
+                    currentOption = totalOptions - 1;
+
                 messageDisplayed = false;
 
-                RightArrow.gameObject.SetActive(currentOption < totalOptions - 1);
-                LeftArrow.gameObject.SetActive(currentOption > 0);
+                //RightArrow.gameObject.SetActive(currentOption < totalOptions - 1);
+                //LeftArrow.gameObject.SetActive(currentOption > 0);
 
                 Dots[currentOption].transform.Find("LightDot").gameObject.SetActive(true);
             }
@@ -245,6 +249,8 @@ namespace Yarn.Unity.Example {
             SetSelectedOption = optionChooser;
 
             RightArrow.gameObject.SetActive(true);
+            LeftArrow.gameObject.SetActive(true);
+
             Dots[0].transform.Find("LightDot").gameObject.SetActive(true);
 
             for (int i = 0; i < optionsCollection.options.Count; i++) {
